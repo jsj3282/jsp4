@@ -1,11 +1,12 @@
 package members;
 
 public class MemberDTO {
+	//Data transition Object
 	private String id;
 	private String pwd;
 	private String name;
 	private String addr;
-	private String tek;
+	private String tel;
 	
 	public String getId() {
 		return id;
@@ -31,11 +32,11 @@ public class MemberDTO {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	public String getTek() {
-		return tek;
+	public String getTel() {
+		return tel;
 	}
-	public void setTek(String tek) {
-		this.tek = tek;
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 	
 }
