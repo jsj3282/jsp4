@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<% response.setCharacterEncoding("utf-8");
-	request.setCharacterEncoding("utf-8");%>
+	<fmt:requestEncoding value="utf-8"/>
 	<form action="regChk.jsp" method="post">
 		<h1>회원 가입</h1>
 		아이디 : <input type="text" name="id" placeholder="아이디"><br>

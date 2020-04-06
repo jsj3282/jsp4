@@ -1,6 +1,8 @@
 <%@page import="members.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,28 +10,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<% response.setCharacterEncoding("utf-8");
-	request.setCharacterEncoding("utf-8");%>
+	<fmt:requestEncoding value="utf-8"/>
 	<jsp:useBean id="dao" class="members.MemberDAO"/>
-	<%
-		System.out.print("id : "+request.getParameter("id"));
-		MemberDTO dto = dao.userInfo(request.getParameter("id"));
-		int i = dao.changeUser(request.getParameter("id"),request.getParameter("name"),request.getParameter("addr"),request.getParameter("tel"));
-		System.out.println(i);
-		if(i==1){%>
+	<c:set var = "i" value='${dao.changeUser(param.id, param.name, param.addr, param.tel) }'/>
+	<c:choose>
+		<c:when test="${i==1 }">
 			<script type="text/javascript">
-				alert("수정 성공!!");
-				location.href="memberInfo.jsp"
+				alert("수정 성공!!")
+				location.href = "memberInfo.jsp"
 			</script>
-		<% response.sendRedirect("memberInfo.jsp");
-			System.out.println("여기?1");
-		}else if(i==0){%>
-			<script>
+		</c:when>
+		<c:when test="${i==0 }">
+			<script type="text/javascript">
 				alert("수정 실패!!!");
-				location.href="userInfo.jsp?id="+<%=dto.getId()%>
+				location.href="userInfo.jsp?id="+${param.id}
 			</script>
-		
-	<%}%>
-	
+		</c:when>
+	</c:choose>
 </body>
 </html>
